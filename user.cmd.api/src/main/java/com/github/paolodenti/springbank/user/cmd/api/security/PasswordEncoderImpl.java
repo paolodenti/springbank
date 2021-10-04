@@ -1,9 +1,11 @@
 package com.github.paolodenti.springbank.user.cmd.api.security;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
+@Qualifier("passwordEncoder")
 public class PasswordEncoderImpl implements PasswordEncoder {
 
     @Override

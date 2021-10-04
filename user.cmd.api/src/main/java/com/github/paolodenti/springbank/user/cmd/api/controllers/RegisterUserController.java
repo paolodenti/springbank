@@ -32,7 +32,7 @@ public class RegisterUserController {
 
         try {
             commandGateway.sendAndWait(command);
-            return new ResponseEntity<>(new RegisterUserResponse(id,"user succesfully registered"), HttpStatus.CREATED);
+            return new ResponseEntity<>(new RegisterUserResponse(id, "user succesfully registered"), HttpStatus.CREATED);
         } catch (Exception e) {
             var safeErrorMessage = "Error while processing register user request for id  - " + id;
             System.out.println(e.getMessage());

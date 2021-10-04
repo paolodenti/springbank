@@ -4,7 +4,6 @@ import com.github.paolodenti.springbank.user.cmd.api.commands.RegisterUserComman
 import com.github.paolodenti.springbank.user.cmd.api.commands.RemoveUserCommand;
 import com.github.paolodenti.springbank.user.cmd.api.commands.UpdateUserCommand;
 import com.github.paolodenti.springbank.user.cmd.api.security.PasswordEncoder;
-import com.github.paolodenti.springbank.user.cmd.api.security.PasswordEncoderImpl;
 import com.github.paolodenti.springbank.user.core.events.UserRegisteredEvent;
 import com.github.paolodenti.springbank.user.core.events.UserRemovedEvent;
 import com.github.paolodenti.springbank.user.core.events.UserUpdatedEvent;
@@ -15,13 +14,13 @@ import org.axonframework.modelling.command.AggregateIdentifier;
 import org.axonframework.modelling.command.AggregateLifecycle;
 import org.axonframework.spring.stereotype.Aggregate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Lazy;
 
 import java.util.UUID;
 
 @Aggregate
 public class UserAggregate {
-
-    private PasswordEncoder passwordEncoder = new PasswordEncoderImpl();
 
     @AggregateIdentifier
     private String id;
@@ -32,7 +31,7 @@ public class UserAggregate {
     }
 
     @CommandHandler
-    public UserAggregate(RegisterUserCommand command) {
+    public UserAggregate(RegisterUserCommand command, @Autowired @Qualifier("passwordEncoder") @Lazy PasswordEncoder passwordEncoder) {
         var newUser = command.getUser();
         newUser.setId(command.getId());
         var hashedPassword = passwordEncoder.hashPassword(newUser.getAccount().getPassword());
@@ -43,13 +42,8 @@ public class UserAggregate {
         AggregateLifecycle.apply(event);
     }
 
-    @Autowired
-    public void setPasswordEncoder(PasswordEncoder passwordEncoder) {
-        this.passwordEncoder = passwordEncoder;
-    }
-
     @CommandHandler
-    public void handle(UpdateUserCommand command) {
+    public void handle(UpdateUserCommand command, @Autowired @Qualifier("passwordEncoder") @Lazy PasswordEncoder passwordEncoder) {
         var updatedUser = command.getUser();
         updatedUser.setId(command.getId());
         var hashedPassword = passwordEncoder.hashPassword(updatedUser.getAccount().getPassword());
