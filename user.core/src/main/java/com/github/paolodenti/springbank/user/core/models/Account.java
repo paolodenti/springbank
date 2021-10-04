@@ -14,6 +14,8 @@ import java.util.List;
 public class Account {
 
     private String username;
+
     private String password;
+
     private List<Role> roles;
 }

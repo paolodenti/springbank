@@ -9,8 +9,8 @@ import org.springframework.context.annotation.Import;
 @Import({AxonConfig.class})
 public class UserQueryApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(UserQueryApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(UserQueryApplication.class, args);
+    }
 
 }

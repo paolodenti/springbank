@@ -13,11 +13,15 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Builder
 @Document(collection = "users")
 public class User {
+
     @Id
     private String _id;
 
     private String firstname;
+
     private String lastname;
+
     private String emailAddress;
+
     private Account account;
 }
