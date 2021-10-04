@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.UUID;
 
 @RestController
@@ -25,7 +26,7 @@ public class RegisterUserController {
     }
 
     @PostMapping(path = "/registerUser")
-    public ResponseEntity<RegisterUserResponse> registerUser(@RequestBody RegisterUserCommand command) {
+    public ResponseEntity<RegisterUserResponse> registerUser(@Valid @RequestBody RegisterUserCommand command) {
         command.setId(UUID.randomUUID().toString());
 
         try {
