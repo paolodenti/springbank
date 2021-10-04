@@ -4,7 +4,6 @@ import com.github.paolodenti.springbank.user.cmd.api.commands.RegisterUserComman
 import com.github.paolodenti.springbank.user.cmd.api.commands.RemoveUserCommand;
 import com.github.paolodenti.springbank.user.cmd.api.commands.UpdateUserCommand;
 import com.github.paolodenti.springbank.user.cmd.api.security.PasswordEncoder;
-import com.github.paolodenti.springbank.user.cmd.api.security.PasswordEncoderImpl;
 import com.github.paolodenti.springbank.user.core.events.UserRegisteredEvent;
 import com.github.paolodenti.springbank.user.core.events.UserRemovedEvent;
 import com.github.paolodenti.springbank.user.core.events.UserUpdatedEvent;
@@ -14,13 +13,14 @@ import org.axonframework.eventsourcing.EventSourcingHandler;
 import org.axonframework.modelling.command.AggregateIdentifier;
 import org.axonframework.modelling.command.AggregateLifecycle;
 import org.axonframework.spring.stereotype.Aggregate;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.UUID;
 
 @Aggregate
 public class UserAggregate {
 
-    private final PasswordEncoder passwordEncoder = new PasswordEncoderImpl();
+    private PasswordEncoder passwordEncoder;
 
     @AggregateIdentifier
     private String id;
@@ -40,6 +40,11 @@ public class UserAggregate {
         var event = UserRegisteredEvent.builder().id(command.getId()).user(newUser).build();
 
         AggregateLifecycle.apply(event);
+    }
+
+    @Autowired
+    public void setPasswordEncoder(PasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
     }
 
     @CommandHandler
@@ -65,7 +70,8 @@ public class UserAggregate {
     @EventSourcingHandler
     public void on(UserRegisteredEvent event) {
         this.id = event.getId();
-        this.user = event.getUser();    }
+        this.user = event.getUser();
+    }
 
     @EventSourcingHandler
     public void on(UserUpdatedEvent event) {
