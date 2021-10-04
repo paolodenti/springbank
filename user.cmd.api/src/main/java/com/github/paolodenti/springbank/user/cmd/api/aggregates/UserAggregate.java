@@ -4,6 +4,7 @@ import com.github.paolodenti.springbank.user.cmd.api.commands.RegisterUserComman
 import com.github.paolodenti.springbank.user.cmd.api.commands.RemoveUserCommand;
 import com.github.paolodenti.springbank.user.cmd.api.commands.UpdateUserCommand;
 import com.github.paolodenti.springbank.user.cmd.api.security.PasswordEncoder;
+import com.github.paolodenti.springbank.user.cmd.api.security.PasswordEncoderImpl;
 import com.github.paolodenti.springbank.user.core.events.UserRegisteredEvent;
 import com.github.paolodenti.springbank.user.core.events.UserRemovedEvent;
 import com.github.paolodenti.springbank.user.core.events.UserUpdatedEvent;
@@ -20,7 +21,7 @@ import java.util.UUID;
 @Aggregate
 public class UserAggregate {
 
-    private PasswordEncoder passwordEncoder;
+    private PasswordEncoder passwordEncoder = new PasswordEncoderImpl();
 
     @AggregateIdentifier
     private String id;

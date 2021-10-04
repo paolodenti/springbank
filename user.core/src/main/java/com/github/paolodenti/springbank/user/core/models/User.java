@@ -30,6 +30,6 @@ public class User {
     @Email(message = "provide a valid email address")
     private String emailAddress;
 
-    @NotNull(message = "provide account creedentials")
+    @NotNull(message = "provide account credentials")
     private Account account;
 }
