@@ -1,4 +1,4 @@
-package com.github.paolodenti.springbank.user.query.api.events;
+package com.github.paolodenti.springbank.user.core.events;
 
 import com.github.paolodenti.springbank.user.core.models.User;
 import lombok.Builder;
@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class UserRegisteredEvent {
+public class UserUpdatedEvent {
 
     private String id;
 

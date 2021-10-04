@@ -1,4 +1,4 @@
-package com.github.paolodenti.springbank.user.query.api.events;
+package com.github.paolodenti.springbank.user.core.events;
 
 import lombok.Data;
 
