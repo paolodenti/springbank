@@ -1,4 +1,4 @@
-# CQRS & Event Sourcing Sample
+# CQRS & Event Sourcing Sample with Axon
 
 ## setup external environment
 
