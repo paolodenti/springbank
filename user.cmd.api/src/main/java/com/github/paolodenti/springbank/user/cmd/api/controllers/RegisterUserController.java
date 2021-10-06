@@ -15,7 +15,7 @@ import javax.validation.Valid;
 import java.util.UUID;
 
 @RestController
-@RequestMapping(path = "/api/v1")
+@RequestMapping(path = "/api/v1/registerUser")
 public class RegisterUserController {
 
     private final CommandGateway commandGateway;
@@ -25,7 +25,7 @@ public class RegisterUserController {
         this.commandGateway = commandGateway;
     }
 
-    @PostMapping(path = "/registerUser")
+    @PostMapping(path = "")
     public ResponseEntity<RegisterUserResponse> registerUser(@Valid @RequestBody RegisterUserCommand command) {
         var id = UUID.randomUUID().toString();
         command.setId(id);

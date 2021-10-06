@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping(path = "/api/v1")
+@RequestMapping(path = "/api/v1/updateUser")
 public class UpdateUserController {
 
     private final CommandGateway commandGateway;
@@ -21,7 +21,7 @@ public class UpdateUserController {
         this.commandGateway = commandGateway;
     }
 
-    @PutMapping(path = "/updateUser/{id}")
+    @PutMapping(path = "/{id}")
     public ResponseEntity<BaseResponse> updateUser(@PathVariable(value = "id") String id, @Valid @RequestBody UpdateUserCommand command) {
         try {
             command.setId(id);
