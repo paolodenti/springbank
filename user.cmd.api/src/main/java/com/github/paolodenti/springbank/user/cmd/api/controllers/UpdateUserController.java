@@ -29,7 +29,7 @@ public class UpdateUserController {
             commandGateway.sendAndWait(command);
             return new ResponseEntity<>(new BaseResponse("user succesfully updated"), HttpStatus.OK);
         } catch (Exception e) {
-            var safeErrorMessage = "Error while processing register user request for id  - " + id;
+            var safeErrorMessage = "Error while processing update user request for id  - " + id;
             System.out.println(e.getMessage());
 
             return new ResponseEntity<>(new BaseResponse(safeErrorMessage), HttpStatus.INTERNAL_SERVER_ERROR);
