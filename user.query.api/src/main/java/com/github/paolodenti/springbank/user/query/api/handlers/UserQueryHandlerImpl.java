@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 @Service
 public class UserQueryHandlerImpl implements UserQueryHandler {
+
     private final UserRepository userRepository;
 
     @Autowired

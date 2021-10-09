@@ -8,6 +8,8 @@ import com.github.paolodenti.springbank.user.query.api.queries.SearchUsersQuery;
 public interface UserQueryHandler {
 
     UserLookupResponse getUserById(FindUserByIdQuery query);
+
     UserLookupResponse searchUsers(SearchUsersQuery query);
+
     UserLookupResponse getAllUsers(FindAllUsersQuery query);
 }
