@@ -22,6 +22,13 @@ public class UserQueryHandlerImpl implements UserQueryHandler {
 
     @QueryHandler
     @Override
+    public UserLookupResponse getAllUsers(FindAllUsersQuery query) {
+        var users = new ArrayList<>(userRepository.findAll());
+        return new UserLookupResponse(users);
+    }
+
+    @QueryHandler
+    @Override
     public UserLookupResponse getUserById(FindUserByIdQuery query) {
         var user = userRepository.findById(query.getId());
         return user.map(UserLookupResponse::new).orElse(null);
@@ -31,13 +38,6 @@ public class UserQueryHandlerImpl implements UserQueryHandler {
     @Override
     public UserLookupResponse searchUsers(SearchUsersQuery query) {
         var users = new ArrayList<>(userRepository.findByFilterRegex(query.getFilter()));
-        return new UserLookupResponse(users);
-    }
-
-    @QueryHandler
-    @Override
-    public UserLookupResponse getAllUsers(FindAllUsersQuery query) {
-        var users = new ArrayList<>(userRepository.findAll());
         return new UserLookupResponse(users);
     }
 }

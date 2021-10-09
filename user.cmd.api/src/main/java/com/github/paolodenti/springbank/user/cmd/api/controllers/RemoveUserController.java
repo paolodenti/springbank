@@ -1,7 +1,7 @@
 package com.github.paolodenti.springbank.user.cmd.api.controllers;
 
 import com.github.paolodenti.springbank.user.cmd.api.commands.RemoveUserCommand;
-import com.github.paolodenti.springbank.user.cmd.api.dto.BaseResponse;
+import com.github.paolodenti.springbank.user.core.dto.BaseResponse;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

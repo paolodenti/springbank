@@ -1,5 +1,6 @@
 package com.github.paolodenti.springbank.user.cmd.api.dto;
 
+import com.github.paolodenti.springbank.user.core.dto.BaseResponse;
 import lombok.Getter;
 
 @Getter
